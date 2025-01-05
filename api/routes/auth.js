@@ -6,7 +6,7 @@ const router=express.Router();
 
 
 router.post("/register",signUpController);
-x
+
 router.post("/login",loginController);
 
 export default router;
