@@ -6,6 +6,10 @@ import morgan from "morgan";
 // const userRoute = require("./routes/users");
 // const authRoute = require("./routes/auth");
 // const postRoute = require("./routes/posts");
+
+import authRoute from "./routes/auth.js";
+import postRoute from "./routes/posts.js";
+import  userRoute from "./routes/users.js";
 dotenv.config();
 const app = express();
 const port=process.env.PORT||4000;
@@ -21,9 +25,9 @@ app.use(express.urlencoded({extended:true}));
 app.use(helmet());
 app.use(morgan("common"));
 
-// app.use("/api/auth", authRoute);
-// app.use("/api/users", userRoute);
-// app.use("/api/posts", postRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
 
 // app.listen(8800, () => {
 //   console.log("Backend server is running!");
