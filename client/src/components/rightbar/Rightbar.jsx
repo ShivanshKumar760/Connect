@@ -4,6 +4,7 @@ import Online from "../online/Online";
 
 /* eslint-disable react/prop-types */
 export default function Rightbar({ profile }) {
+  console.log(profile);
   const HomeRightbar = () => {
     return (
       <>
