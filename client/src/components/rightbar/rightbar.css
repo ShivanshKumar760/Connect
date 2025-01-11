@@ -104,4 +104,16 @@
 .allUserList{
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.rightbarAllUserImg{
+
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 3px;
+
 }

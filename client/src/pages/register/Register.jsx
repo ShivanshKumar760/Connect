@@ -1,8 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./register.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {Cancel} from "@material-ui/icons";
+
+
+
 export default function Register() {
   const username = useRef();
   const email = useRef();
@@ -10,6 +14,11 @@ export default function Register() {
   const passwordAgain = useRef();
   const navigate = useNavigate();
   console.log(import.meta.env.VITE_BACKEND_API);
+  const [file, setFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
@@ -21,6 +30,21 @@ export default function Register() {
         password: password.current.value,
       };
       try {
+        const formData = new FormData();
+        formData.append('file', file);
+        if(file)
+        {
+          const response = await axios.post(`${import.meta.env.VITE_BACKEND_API}/upload`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        setImageUrl(response.data.url);
+        // console.log("Image url:",response.data.url);
+        user.profilePicture=response.data.url
+        // console.log(user);
+        }
+        
         await axios.post(`${import.meta.env.VITE_BACKEND_API}/auth/register`, user);
         navigate("/login");
       } catch (err) {
@@ -39,6 +63,12 @@ export default function Register() {
           </span>
         </div>
         <div className="loginRight">
+           {file && (
+                    <div className="shareImgContainer">
+                      <img className="shareImg" src={imageUrl} alt="" />
+                      <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
+                    </div>
+            )}
           <form className="loginBox" onSubmit={handleSubmit}>
             <input
               placeholder="Username"
@@ -68,6 +98,15 @@ export default function Register() {
               className="loginInput"
               type="password"
             />
+         
+            <span className="shareOptionText">Photo or Video</span>
+              <input
+                style={{ display: "" }}
+                type="file"
+                id="file"
+                accept=".png,.jpeg,.jpg"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             <button className="loginButton" type="submit">
               Sign Up
             </button>

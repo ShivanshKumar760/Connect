@@ -18,12 +18,12 @@ export default function Rightbar({ user }) {
 
   const [allUsers,setAllUsers]=useState([]);
 
-  console.log(user);
-  console.log("Current user",currentUser);
-   console.log( user?._id);
-   console.log("Current user id",currentUser._id);
-  console.log(followed);
-  console.log(import.meta.env.VITE_BACKEND_API)
+  // console.log(user);
+  // console.log("Current user",currentUser);
+  //  console.log( user?._id);
+  //  console.log("Current user id",currentUser._id);
+  // console.log(followed);
+  // console.log(import.meta.env.VITE_BACKEND_API)
   useEffect(() => {
     if (user && currentUser) {
       setFollowed(currentUser.followings.includes(user._id));
@@ -33,7 +33,7 @@ export default function Rightbar({ user }) {
     const allUser=async ()=>{
       try{
         const res=await axios.get(`${import.meta.env.VITE_BACKEND_API}/users/all/`);
-        console.log("response is:",res.data);
+        // console.log("response is:",res.data);
         setAllUsers(res.data)
       }
       catch(err)
@@ -109,7 +109,7 @@ export default function Rightbar({ user }) {
           </span>
         </div>
         <img className="rightbarAd" src={`${PF}ad.png`} alt="" />
-        <h4 className="rightbarTitle">Online Friends</h4>
+        {/* <h4 className="rightbarTitle">Online Friends</h4> */}
         {/* <ul className="rightbarFriendList">
           {Users.map((u) => (
             <Online key={u.id} user={u} />
@@ -149,19 +149,20 @@ export default function Rightbar({ user }) {
             </span>
           </div>
         </div>
+        <span>All users</span>
         <div className="allUserList">
-            <span>All users</span>
+            
             {allUsers?.map((user,i)=>{
               return (<Link to={"/profile/" + user.username} style={{ textDecoration: "none" }} key={i}>
               <div className="rightbarFollowing">
                 <img
                   src={
                     user.profilePicture
-                      ? PF + user.profilePicture
+                      ?user.profilePicture
                       : PF + "person/noAvatar.png"
                   }
                   alt=""
-                  className="rightbarFollowingImg"
+                  className="rightbarAllUserImg"
                 />
                 <span className="rightbarFollowingName">{user.username}</span>
               </div>
@@ -176,7 +177,7 @@ export default function Rightbar({ user }) {
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
+                      ? friend.profilePicture
                       : PF + "person/noAvatar.png"
                   }
                   alt=""

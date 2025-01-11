@@ -37,7 +37,7 @@ export default function Share() {
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(response.data);
+        // console.log(response.data);
         setImageUrl(response.data.url); // Update the image URL after successful upload
         newPost.img = response.data.url; // Store the image URL in the post data
       } catch (error) {
@@ -48,7 +48,7 @@ export default function Share() {
     }
 
     try {
-      console.log(newPost);
+      // console.log(newPost);
       await axios.post(`${import.meta.env.VITE_BACKEND_API}/posts`, newPost);
       window.location.reload(); // Reload the page after successful post creation
     } catch (err) {
@@ -65,7 +65,7 @@ export default function Share() {
             className="shareProfileImg"
             src={
               user.profilePicture
-                ? PF + user.profilePicture
+                ?user.profilePicture
                 : PF + "person/noAvatar.png"
             }
             alt=""

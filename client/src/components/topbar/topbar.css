@@ -28,7 +28,7 @@ img{
 }
 
 .topbarCenter {
-  flex: 5;
+  flex: 7;
 }
 
 .searchbar {
@@ -38,6 +38,8 @@ img{
   border-radius: 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
 }
 
 .searchIcon {
@@ -45,9 +47,16 @@ img{
   margin-left: 10px;
 }
 
+button{
+  background-color: inherit;
+  border: none;
+  border-radius: 10px;
+}
+
 .searchInput {
   border: none;
-  width: 70%;
+  width: 60%;
+  border-radius: 10px;
 }
 
 .searchInput:focus {

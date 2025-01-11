@@ -9,14 +9,15 @@ import lightLogo from "../../images/logoLight.png"
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-
+import axios from "axios";
 export default function Topbar() {
   // dotenv.config();
   const [theme, setTheme] = useState('light'); // Default theme
   const { user } = useContext(AuthContext);//get the user object from the authContext
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const navigate=useNavigate();
-  console.log(import.meta.env.VITE_PUBLIC_FOLDER);
+  const [searchValue,setSearchValue]=useState("")
+  // console.log(import.meta.env.VITE_PUBLIC_FOLDER);
 
   useEffect(() => {
     // Apply theme to the document's root element
@@ -34,6 +35,12 @@ export default function Topbar() {
     navigate("/");
   }
 
+  const handleSearchUser=async (e)=>{
+    e.preventDefault();
+    const response=await axios.get(`${import.meta.env.VITE_BACKEND_API}/users?username=${searchValue}`);
+    // console.log(response.data);
+    navigate("/searchPage",{state: { userData: response.data }});
+  }
  
   return (
     <div className="topbarContainer">
@@ -47,10 +54,15 @@ export default function Topbar() {
 
       {/* Center of topbar */}
       <div className="topbarCenter">
-        <div className="searchbar">
+        <form className="searchbar" onSubmit={handleSearchUser}>
+          <input placeholder="Search for friend!Enter user id" className="searchInput"
+          value={searchValue}
+          onChange={(e)=>(setSearchValue(e.target.value))}
+          />
+          <button>
           <Search className="searchIcon" />
-          <input placeholder="Search for friend, post or video" className="searchInput"/>
-        </div>
+          </button>
+        </form>
       </div>
 
       {/* right side of topbar */}
@@ -59,8 +71,12 @@ export default function Topbar() {
             <span onClick={handleTheme} className="toggleTheme topbarLink">{theme==="light"?
               <Brightness3TwoTone className="toggleIcon"/>:<Brightness7TwoTone className="toggleIcon"/>
             }</span>
+            <Link to="/" style={{textDecoration:"none", color:"inherit"}}>
             <span className="topbarLink">Homepage</span>
+            </Link>
+            <Link to={`/profile/${user.username}`}style={{textDecoration:"none", color:"inherit"}} >
             <span className="topbarLink">Timeline</span>
+            </Link>
           </div>
           <div className="topbarIcons">
             <Link to="/messenger">
@@ -78,7 +94,7 @@ export default function Topbar() {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
+                ?  user.profilePicture
                 : PF + "person/noAvatar.png"
             }
             alt=""
