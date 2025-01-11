@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./topbar.css";
-import { Search, Person, Chat, Notifications,Brightness3TwoTone,Brightness7TwoTone} from "@material-ui/icons";
+import { Search, Chat,Brightness3TwoTone,Brightness7TwoTone} from "@material-ui/icons";
 import { useEffect } from "react";
 
 // import dotenv from "dotenv";
@@ -63,18 +63,12 @@ export default function Topbar() {
             <span className="topbarLink">Timeline</span>
           </div>
           <div className="topbarIcons">
-            <div className="topbarIconItem">
-              <Person />
-              <span className="topbarIconBadge">1</span>
-            </div>
+            <Link to="/messenger">
             <div className="topbarIconItem">
               <Chat />
-              <span className="topbarIconBadge">2</span>
             </div>
-            <div className="topbarIconItem">
-              <Notifications />
-              <span className="topbarIconBadge">1</span>
-            </div>
+            </Link>
+           
 
             <div className="logoutBtn">
                 <button onClick={logout}>Logout</button>

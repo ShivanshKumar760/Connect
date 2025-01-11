@@ -8,6 +8,8 @@ import morgan from "morgan";
 import authRoute from "./routes/auth.js";
 import postRoute from "./routes/posts.js";
 import  userRoute from "./routes/users.js";
+import conversationRoute from "./routes/conversations.js";
+import messageRoute from "./routes/messages.js";
 import cloudinaryPkg from 'cloudinary';  // Default import for Cloudinary
 import multer from "multer";
 import cors from "cors";
@@ -50,6 +52,8 @@ app.use(morgan("common"));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 
 
 app.post('/api/upload', upload.single('file'), async (req, res) => {

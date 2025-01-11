@@ -1,6 +1,6 @@
 import "./rightbar.css";
-import { Users } from "../../dummyData";
-import Online from "../online/Online";
+// import { Users } from "../../dummyData";
+// import Online from "../online/Online";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -110,11 +110,11 @@ export default function Rightbar({ user }) {
         </div>
         <img className="rightbarAd" src={`${PF}ad.png`} alt="" />
         <h4 className="rightbarTitle">Online Friends</h4>
-        <ul className="rightbarFriendList">
+        {/* <ul className="rightbarFriendList">
           {Users.map((u) => (
             <Online key={u.id} user={u} />
           ))}
-        </ul>
+        </ul> */}
       </>
     );
   };
