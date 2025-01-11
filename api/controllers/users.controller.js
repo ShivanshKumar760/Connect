@@ -5,10 +5,11 @@ import User from "../models/User.js";
 //get user:
 
 const getUserController=async (req,res)=>{
-    const {id}=req.params;
-    console.log("Request user id is:",id);
+    // const {id}=req.params;
+    const {username,userId}=req.query
+    // console.log("Request user id is:",id);
     try {
-        const user=await User.findById(id);
+        const user=userId?await User.findById(userId):await User.findOne({username:username});
         const { password, updatedAt, ...other } = user._doc;
         res.status(200).json(other);
     } catch (error) {
@@ -127,6 +128,8 @@ const followUserController=async (req, res) => {
           res.status(403).json("you dont follow this user");
         }
       } catch (err) {
+        console.log(err);
+        console.log("Oops sorry the unfollow operation failed");
         res.status(500).json(err);
       }
     } else {
@@ -135,6 +138,27 @@ const followUserController=async (req, res) => {
   };
 
 
+const getAllFriendsController=async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendList)
+  } catch (err) {
+    console.log(err);
+    console.log("Oops sorry finding friends operation failed");
+    res.status(500).json(err);
+  }
+};
+
 export  {getUserController,deleteUserController,putUserDetailController,
-    followUserController,unfollowUserController
+    followUserController,unfollowUserController,getAllFriendsController
 };

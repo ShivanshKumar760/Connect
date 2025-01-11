@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { getUserController,deleteUserController,
     putUserDetailController,unfollowUserController,
-    followUserController
+    followUserController,getAllFriendsController
  } from "../controllers/users.controller.js";
 
 
@@ -14,7 +14,7 @@ router.put("/:id", putUserDetailController);
 router.delete("/:id", deleteUserController);
   
 //get a user
-router.get("/:id", getUserController);
+router.get("/", getUserController);
   
   
 //follow a user
@@ -25,6 +25,9 @@ router.put("/:id/follow", followUserController);
   
 router.put("/:id/unfollow",unfollowUserController);
 
+//get friends:
+
+router.get("/friends/:userId",getAllFriendsController);
 
 export default router;
 

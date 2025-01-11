@@ -102,16 +102,16 @@ const getPostController=async (req,res)=>{//gee a single post
 //get all time line controller
 
 const getTimeLineController=async (req,res)=>{
-    console.log("Current user id is :",req.body.userId);
+    console.log("Current user id is :",req.params.userId);
     try {
-        const currentUser = await User.findById(req.body.userId);//we will fetch our detail
+        const currentUser = await User.findById(req.params.userId);//we will fetch our detail
         const userPosts = await Post.find({ userId: currentUser._id });//our posts
         const friendPosts = await Promise.all(//we will fetch our frends post
           currentUser.followings.map((friendId) => {
             return Post.find({ userId: friendId });
           })
         );
-        res.json(userPosts.concat(...friendPosts))//and concat our friend post with us
+        res.status(200).json(userPosts.concat(...friendPosts))//and concat our friend post with us
       } catch (err) {
         console.log(err);
         console.log("Oops error occured while while geeting timeline")
