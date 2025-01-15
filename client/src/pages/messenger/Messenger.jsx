@@ -32,7 +32,7 @@ export default function Messenger() {
 
   useEffect(() => {
     arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) &&
+      currentChat?.members?.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
@@ -98,7 +98,7 @@ export default function Messenger() {
       console.log(err);
     }
   };
-
+  console.log(user);
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -106,11 +106,10 @@ export default function Messenger() {
   return (
     <>
       <Topbar />
-      <h1>Hello ,{user.username}</h1>
+      <h1 style={{color:"black"}}>Hello {user.username}</h1>
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
             {conversations.map((c,i) => (
               <div onClick={() => setCurrentChat(c)} key={i}>
                 <Conversation conversation={c} currentUser={user} />
@@ -149,9 +148,15 @@ export default function Messenger() {
           </div>
         </div>
         <div className="chatOnline">
-          
-            {
+          <div className="chatOnlineContainer">
+              <ChatOnline
+                onlineUsers={onlineUsers}
+                currentId={user._id}
+                setCurrentChat={setCurrentChat}
+              />
+               {
               onlineUsers?.map((onlineUser,i)=>(
+
                 <div className="chatOnlineWrapper"  key={i} onClick={async ()=>{
                   await axios.post(`${import.meta.env.VITE_BACKEND_API}/conversations/`,{
                     senderId:user._id,
@@ -161,16 +166,13 @@ export default function Messenger() {
 
                 }
                 }>
-                <ChatOnline
-                onlineUsers={onlineUsers}
-                currentId={user._id}
-                setCurrentChat={setCurrentChat}
+                  <button>Add Convorsation</button>
+                </div>
+              
                
-              />
-               </div>
               ))
             }
-            
+            </div>
          
         </div>
       </div>

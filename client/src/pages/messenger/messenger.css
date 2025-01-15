@@ -90,3 +90,12 @@
       flex: 1px;
     }
   }
+
+  .chatOnlineContainer{
+    display: flex;
+    align-items: center;
+  }
+
+  button{
+    cursor: pointer;
+  }
