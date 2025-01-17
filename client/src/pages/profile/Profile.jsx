@@ -12,10 +12,12 @@ export default function Profile() {
   const PF=import.meta.env.VITE_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const username = useParams().username;
+  console.log(username);
 
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_API}/users?username=${username}`);
+      // console.log(res.data);
       setUser(res.data);
     };
     fetchUser();

@@ -22,8 +22,9 @@ export default function Post({ post }) {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `${import.meta.VITE_BACKEND_API}/users?userId=${post.userId}`
+        `${import.meta.env.VITE_BACKEND_API}/users?userId=${post.userId}`
       );
+      // console.log("From Post.jsx:",res.data);
       setUser(res.data);
     };
 
@@ -48,7 +49,7 @@ export default function Post({ post }) {
             <Link to={`profile/${user.username}`}>
               <img
                 className="postProfileImg"
-                src={user.profilePicture ? PF + user.profilePicture : PF + "person/noAvatar.png"}
+                src={user.profilePicture ?  user.profilePicture : PF + "person/noAvatar.png"}
                 alt=""
               />
             </Link>
