@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import "./SearchPage.css"; // Import the CSS for styling
+import "./searchPage.css"; // Import the CSS for styling
 
 const SearchPage = () => {
   const location = useLocation();
