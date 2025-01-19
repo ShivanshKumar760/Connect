@@ -27,7 +27,9 @@ export default function Login() {
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleSubmit}>
+            <label>Enter Mail:</label>
             <input placeholder="Email" required className="loginInput" ref={email} />
+            <label>Enter Password:</label>
             <input placeholder="Password" required type="password" className="loginInput" ref={password} minLength="6"/>
              <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
