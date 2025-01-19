@@ -48,6 +48,7 @@ export default function Register() {
         await axios.post(`${import.meta.env.VITE_BACKEND_API}/auth/register`, user);
         navigate("/login");
       } catch (err) {
+        
         console.log(err);
       }
     }
