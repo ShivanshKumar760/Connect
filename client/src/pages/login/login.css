@@ -82,3 +82,8 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+.loginPageLogo{
+  width: 500px;
+  height: 100px;
+}

@@ -4,6 +4,8 @@ import "./login.css";
 import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
 import {Link} from "react-router-dom";
+
+import logo from "../../images/logoLight.png"
 export default function Login() {
   const email=useRef();
   const password=useRef();
@@ -20,7 +22,8 @@ export default function Login() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">Linked</h3>
+          {/* <h3 className="loginLogo">Linked</h3> */}
+          <img src={logo} alt="loginPage-logo" className="loginPageLogo"/>
           <span className="loginDesc">
             Linked Get Connected.
           </span>

@@ -58,7 +58,7 @@ export default function Register() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <img src={logo} alt="website-logo"/>
+          <img  className="registerPageLogo" src={logo} alt="website-logo"/>
           <span className="loginDesc">
             Connect with friends and the world around you on Linked.
           </span>
