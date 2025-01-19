@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {Cancel} from "@material-ui/icons";
-
+import logo from "../../images/logoLight.png"
 
 
 export default function Register() {
@@ -58,7 +58,7 @@ export default function Register() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">Linked</h3>
+          <img src={logo} alt="website-logo"/>
           <span className="loginDesc">
             Connect with friends and the world around you on Linked.
           </span>
