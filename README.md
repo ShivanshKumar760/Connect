@@ -43,7 +43,7 @@ Linked is a social networking platform that allows users to connect, follow/unfo
 
 ### **2. Clone the Repository**
 ```bash
-git clone https://github.com/your-username/linked.git
+git clone https://github.com/ShivanshKumar760/linked.git
 cd linked
 ```
 
@@ -92,8 +92,8 @@ VITE_BACKEND_API=http://localhost:3000/api
 ---
 
 ## **Live Project**
-- **Frontend**: [Visit Linked](https://linked.example.com)
-- **GitHub Repository**: [Linked Code](https://github.com/your-username/linked)
+- **Frontend**: [Visit Linked](https://linnked.netlify.app/)
+- **GitHub Repository**: [Linked Code](https://github.com/ShivanshKumar760/linked.git)
 
 ---
 
