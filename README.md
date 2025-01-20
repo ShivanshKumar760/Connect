@@ -1,5 +1,5 @@
 
-![FlickWatch Logo](https://github.com/ShivanshKumar760/FlickWatch/blob/master/frontend/src/images/logo.png)
+![Linked Logo](https://github.com/ShivanshKumar760/linked/blob/master/client/src/images/logoDark.png)
 
 
 # **Linked**
